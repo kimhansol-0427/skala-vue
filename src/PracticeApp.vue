@@ -22,6 +22,14 @@ import VModel from './components/practices/basic/VModel.vue'
 import FormElementsHandlingExample from './components/practices/basic/FormElementsHandlingExample.vue'
 import VModelModifiersExample from './components/practices/basic/VModelModifiersExample.vue'
 import VueStyleExample from './components/practices/basic/VueStyleExample.vue'
+import RefExample from './components/practices/composition/RefExample.vue'
+import ReactiveExample from './components/practices/composition/ReactiveExample.vue'
+import ComputedExample from './components/practices/composition/ComputedExample.vue'
+import WatchExample from './components/practices/composition/WatchExample.vue'
+import MultiSourceWatchExample from './components/practices/composition/MultiSourceWatchExample.vue'
+import DeepWatchExample from './components/practices/composition/DeepWatchExample.vue'
+import ReactiveDataExample from './components/practices/composition/ReactiveDataExample.vue'
+import WatchEffectExample from './components/practices/composition/WatchEffectExample.vue'
 import './components/practice.css'
 </script>
 
@@ -50,5 +58,13 @@ import './components/practice.css'
     <FormElementsHandlingExample />
     <VModelModifiersExample />
     <VueStyleExample />
+    <RefExample />
+    <ReactiveExample />
+    <ComputedExample />
+    <WatchExample />
+    <MultiSourceWatchExample />
+    <DeepWatchExample />
+    <ReactiveDataExample />
+    <WatchEffectExample />
   </div>
 </template>
