@@ -18,14 +18,14 @@
 
 ## 과제 진행 기록
 
-### Day 1 — Vue 문법 (디렉티브·이벤트·폼)
+### Day 1 - Vue 문법 (디렉티브·이벤트·폼)
 
 **과제 1: 날씨 Mockup** (`src/components/exercise/WeatherMockup.vue`)
 
 - `v-for` + `:key`, `v-if`/`v-else`, `:value`+`@input`, `@click`/`@click.stop` 요구사항 구현
 - 커스터마이징: 도시 4곳(서울/울산/강릉/제주)으로 변경, 즐겨찾기 별표 기능, 미세먼지 배지(`v-else-if` 체인), 날씨 상태별 활동 추천 문구(`getActivity` 함수) 추가
 
-### Day 2 — Composition API & 컴포넌트 분리
+### Day 2 - Composition API & 컴포넌트 분리
 
 **과제 2: 날씨 컴포지션** (`src/components/exercise/WeatherComposition.vue`)
 
@@ -38,7 +38,7 @@
 - `BaseDashboardCard`, `SearchBar`, `WeatherCard`로 컴포넌트 분리
 - `props`/`emits`로 부모-자식 데이터 통신 (`select-card`, `toggle-favorite`, `click-detail`)
 
-### Day 3 — Pinia, Vue Router, Axios 실전 적용
+### Day 3 - Pinia, Vue Router, Axios 실전 적용
 
 **과제 6: Axios 적용** (라우터 블록, `ExerciseApp.vue` 내 `<RouterView />`)
 
@@ -49,7 +49,7 @@
 - `WeatherDetailView.vue`: 도시별 상세 정보(습도·풍속), 섭씨/화씨 자동 변환, 공유 링크 생성
 - `WeatherTodayView.vue`: 즐겨찾기/최근 조회 이력 기반 "오늘의 한마디" 대표 도시 추천 로직
 
-### Day 4 — UI 라이브러리, 빌드 & 배포
+### Day 4 - UI 라이브러리, 빌드 & 배포
 
 - Element Plus 적용: `el-card`, `el-tag`, `el-button`, `ElMessage` 등으로 카드 UI/알림 개선
 - 도시 이름/영문 매핑표(`cityNameMap`)를 이용해 한글로도 다른 지역 검색 가능하도록 구현
