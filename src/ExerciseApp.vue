@@ -25,7 +25,7 @@ import UnitToggler from './components/exercise/UnitToggler.vue'
   </div>
 
   <div class="app-container">
-    <h1>⛅ 과제 5: 스토어 적용</h1>
+    <h1>⛅ 과제 6: Axios 적용</h1>
     <hr />
     <div class="dashboard-wrapper">
       <nav class="navigation-bar">
@@ -63,8 +63,8 @@ import UnitToggler from './components/exercise/UnitToggler.vue'
   white-space: nowrap;
   color: #555;
   text-decoration: none;
-  font-size: 14px;
-  padding: 4px 8px;
+  font-size: 17px;
+  padding: 8px 12px;
 }
 .nav-item.router-link-exact-active {
   color: #2471a3;
@@ -73,5 +73,6 @@ import UnitToggler from './components/exercise/UnitToggler.vue'
 }
 .divider {
   color: #ccc;
+  font-size: 17px;
 }
 </style>

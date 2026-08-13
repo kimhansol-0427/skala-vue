@@ -26,25 +26,28 @@ const handleGoHome = () => {
 .description-box {
   background: #f4f4f4;
   border-radius: 8px;
-  padding: 14px 16px;
-  margin: 12px 0;
-  font-size: 14px;
-  line-height: 1.6;
+  padding: 20px 24px;
+  margin: 16px 0;
+  font-size: 17px;
+  line-height: 1.7;
   color: #444;
 }
 .description-box ul {
-  margin: 8px 0 0;
-  padding-left: 18px;
+  margin: 10px 0 0;
+  padding-left: 22px;
+}
+.description-box li {
+  margin: 6px 0;
 }
 .home-btn {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 14px;
   border: none;
   border-radius: 6px;
   background: #3498db;
   color: white;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
 }
 </style>

@@ -29,11 +29,20 @@ defineEmits(['update-query'])
 </template>
 
 <style scoped>
+.search-inner h3 {
+  font-size: 20px;
+}
 .search-inner input {
   width: 100%;
   box-sizing: border-box;
-  padding: 8px;
+  padding: 12px;
+  font-size: 17px;
   border: 1px solid #ccc;
   border-radius: 6px;
+}
+.search-inner p {
+  font-size: 17px;
+  margin-top: 10px;
+  color: #444;
 }
 </style>

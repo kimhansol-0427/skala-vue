@@ -38,7 +38,6 @@ const fetchCityWeatherAndAir = async (city) => {
     ...city,
     temp: Math.round(weatherRes.data.main.temp),
     status: weatherRes.data.weather[0].description,
-    condition: weatherRes.data.weather[0].main, // ★ 추가: 영문 대분류 (Clear/Clouds/Rain 등)
     dust: getDustLabel(airRes.data.list[0].main.aqi),
   }
 }
@@ -153,13 +152,13 @@ const goToDetail = () => {
 <style scoped>
 .today-date {
   text-align: center;
-  font-size: 13px;
+  font-size: 16px;
   color: #888;
   margin: 4px 0 0;
 }
 .today-source {
   text-align: center;
-  font-size: 12px;
+  font-size: 15px;
   color: #aaa;
   margin: 2px 0 16px;
 }
@@ -172,43 +171,43 @@ const goToDetail = () => {
   margin-bottom: 16px;
 }
 .mood-city {
-  font-size: 13px;
+  font-size: 17px;
   color: #666;
   margin: 0 0 12px;
 }
 .mood-emoji {
-  font-size: 40px;
-  margin-bottom: 10px;
+  font-size: 52px;
+  margin-bottom: 14px;
 }
 .mood-text {
-  font-size: 15px;
+  font-size: 20px;
   color: #333;
   font-weight: bold;
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
 }
 
 .detail-link-btn {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 14px;
   border: none;
   border-radius: 6px;
   background: #f39c12;
   color: white;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
   margin-bottom: 8px;
 }
 .back-btn {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 14px;
   border: none;
   border-radius: 6px;
   background: #3498db;
   color: white;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
 }
 </style>

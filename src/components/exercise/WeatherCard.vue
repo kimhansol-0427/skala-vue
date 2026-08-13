@@ -19,10 +19,6 @@ const displayTemp = computed(() => {
   return Math.round(rawTemp)
 })
 
-// 어제 대비 변화량을 계산합니다.
-// 주의: 온도 "차이"를 화씨로 바꿀 때는 +32를 하면 안 됩니다.
-// (예: 오늘 26도, 어제 23도 → 차이는 3도. 이 3도를 화씨 "폭"으로 바꾸면 3×9/5=5.4이지,
-//  (26×9/5+32) - (23×9/5+32) 를 계산해도 결국 +32는 서로 상쇄되어 사라지기 때문입니다.)
 const tempDiff = computed(() => {
   const diffCelsius = props.cityItem.temp - props.cityItem.yesterdayTemp
   if (configStore.unit === 'fahrenheit') {
@@ -72,7 +68,7 @@ const getActivity = (item) => {
     </el-button>
 
     <h4>{{ cityItem.name }} ({{ cityItem.status }})</h4>
-    <p>현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
+    <p class="temp-text">현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
     <p class="diff-text" :class="diffLabel.className">{{ diffLabel.arrow }} {{ diffLabel.text }}</p>
 
     <div class="badge-row">
@@ -100,7 +96,6 @@ const getActivity = (item) => {
       class="btn-detail"
       type="primary"
       plain
-      size="small"
       @click.stop="emit('click-detail', cityItem.name, cityItem.status)"
     >
       상세보기
@@ -115,32 +110,26 @@ const getActivity = (item) => {
   cursor: pointer;
   border-radius: 8px;
   transition: box-shadow 0.15s ease;
+  font-size: 16px;
 }
 .weather-card.selected :deep(.el-card__body) {
   box-shadow: inset 0 0 0 2px #3498db;
   border-radius: 8px;
 }
 
-.badge-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.weather-card h4 {
+  font-size: 22px;
+  margin: 4px 0 10px;
+}
+
+.temp-text {
+  font-size: 18px;
   margin: 6px 0;
 }
 
-.btn-favorite {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  border: none;
-  background: none;
-  font-size: 18px;
-  cursor: pointer;
-}
-
 .diff-text {
-  font-size: 12px;
-  margin: 2px 0 6px;
+  font-size: 16px;
+  margin: 4px 0 10px;
   font-weight: bold;
 }
 .diff-up {
@@ -153,53 +142,36 @@ const getActivity = (item) => {
   color: #888;
 }
 
-.badge {
-  display: inline-block;
-  font-size: 12px;
-  padding: 3px 8px;
-  border-radius: 12px;
-  margin-right: 6px;
-  margin-top: 4px;
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
 }
-.badge.hot {
-  background: #fdecea;
-  color: #c0392b;
-}
-.badge.cool {
-  background: #e8f4fd;
-  color: #2471a3;
-}
-.badge.rain {
-  background: #eaf6ff;
-  color: #2874a6;
-}
-.badge.dust-good {
-  background: #eafaf1;
-  color: #1e8449;
-}
-.badge.dust-normal {
-  background: #fef9e7;
-  color: #b7950b;
-}
-.badge.dust-bad {
-  background: #fdecea;
-  color: #c0392b;
+:deep(.el-tag) {
+  font-size: 15px;
+  padding: 6px 12px;
+  height: auto;
+  line-height: 1.6;
 }
 
-.btn-detail {
-  display: block;
-  margin-top: 8px;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: white;
-  cursor: pointer;
+.btn-favorite {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 20px;
 }
 
 .activity {
-  font-size: 13px;
+  font-size: 17px;
   color: #555;
   font-style: italic;
-  margin: 6px 0;
+  margin: 10px 0;
+}
+
+.btn-detail {
+  margin-top: 10px;
+  font-size: 16px;
+  padding: 10px 18px;
 }
 </style>

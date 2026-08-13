@@ -94,15 +94,17 @@ watchEffect(() => {
 
     <BaseDashboardCard>
       <h3>🏙️ 지역별 날씨 현황</h3>
-      <WeatherCard
-        v-for="item in filteredWeatherList"
-        :key="item.id"
-        :city-item="item"
-        :is-selected="selectedCityId === item.id"
-        @select-card="selectCity"
-        @toggle-favorite="toggleFavorite"
-        @click-detail="showDetail"
-      />
+      <div class="weather-grid">
+        <WeatherCard
+          v-for="item in filteredWeatherList"
+          :key="item.id"
+          :city-item="item"
+          :is-selected="selectedCityId === item.id"
+          @select-card="selectCity"
+          @toggle-favorite="toggleFavorite"
+          @click-detail="showDetail"
+        />
+      </div>
       <p
         v-if="filteredWeatherList.length === 0"
         style="text-align: center; color: #e74c3c; padding: 10px 0"

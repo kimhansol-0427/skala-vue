@@ -25,7 +25,6 @@ const toggleFavorite = (item) => {
   item.favorite = !item.favorite
 }
 
-// 날씨 상태에 따른 여행 추천 문구 (여행 콘셉 포인트)
 const getActivity = (item) => {
   if (item.dust === '나쁨') return '😷 마스크 챙기고 실내 활동 추천'
   if (item.status === '맑음' && item.temp >= 25) return '🧴 선크림 챙기고 야외 나들이'
@@ -54,34 +53,36 @@ const getActivity = (item) => {
     <section class="list-box">
       <h3>🏙️ 지역별 날씨 현황</h3>
 
-      <div
-        v-for="item in weatherList"
-        :key="item.id"
-        class="weather-card"
-        :class="{ selected: selectedCityId === item.id }"
-        @click="selectCity(item)"
-      >
-        <button class="btn-favorite" @click.stop="toggleFavorite(item)">
-          {{ item.favorite ? '⭐' : '☆' }}
-        </button>
+      <div class="weather-grid">
+        <div
+          v-for="item in weatherList"
+          :key="item.id"
+          class="weather-card"
+          :class="{ selected: selectedCityId === item.id }"
+          @click="selectCity(item)"
+        >
+          <button class="btn-favorite" @click.stop="toggleFavorite(item)">
+            {{ item.favorite ? '⭐' : '☆' }}
+          </button>
 
-        <h4>{{ item.name }} ({{ item.status }})</h4>
-        <p>현재 기온: {{ item.temp }}°C</p>
+          <h4>{{ item.name }} ({{ item.status }})</h4>
+          <p>현재 기온: {{ item.temp }}°C</p>
 
-        <span v-if="item.temp >= 25" class="badge hot">🔥 더움 (25도 이상)</span>
-        <span v-else class="badge cool">❄️ 선선함 (25도 미만)</span>
+          <span v-if="item.temp >= 25" class="badge hot">🔥 더움 (25도 이상)</span>
+          <span v-else class="badge cool">❄️ 선선함 (25도 미만)</span>
 
-        <span v-if="item.status === '비'" class="badge rain">☔ 우산 필요</span>
+          <span v-if="item.status === '비'" class="badge rain">☔ 우산 필요</span>
 
-        <span v-if="item.dust === '좋음'" class="badge dust-good">🟢 공기질 좋음</span>
-        <span v-else-if="item.dust === '보통'" class="badge dust-normal">🟡 공기질 보통</span>
-        <span v-else class="badge dust-bad">🔴 공기질 나쁨</span>
+          <span v-if="item.dust === '좋음'" class="badge dust-good">🟢 공기질 좋음</span>
+          <span v-else-if="item.dust === '보통'" class="badge dust-normal">🟡 공기질 보통</span>
+          <span v-else class="badge dust-bad">🔴 공기질 나쁨</span>
 
-        <p class="activity">{{ getActivity(item) }}</p>
+          <p class="activity">{{ getActivity(item) }}</p>
 
-        <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">
-          상세보기
-        </button>
+          <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">
+            상세보기
+          </button>
+        </div>
       </div>
     </section>
 

@@ -17,22 +17,22 @@ const configStore = useConfigStore()
 .unit-toggler {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   white-space: nowrap;
 }
 .unit-label {
-  font-size: 13px;
+  font-size: 17px;
   color: #4b6584;
 }
 .toggle-btn {
-  padding: 5px 10px;
+  padding: 8px 14px;
   background-color: #4b6584;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 17px;
   white-space: nowrap;
 }
 </style>

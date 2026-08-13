@@ -10,12 +10,10 @@ import { ElMessage } from 'element-plus'
 const router = useRouter()
 const route = useRoute()
 
-// OpenWeatherMap 필수 연동 규격
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 const WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather'
 const AIR_POLLUTION_URL = 'https://api.openweathermap.org/data/2.5/air_pollution'
 
-// 도시별 고정 정보 (영문 쿼리명 · 어제 기온은 그대로 유지)
 const cityMeta = [
   { id: 'city_01', name: '서울', english: 'Seoul', yesterdayTemp: 26, favorite: false },
   { id: 'city_02', name: '울산', english: 'Ulsan', yesterdayTemp: 31, favorite: false },
@@ -33,15 +31,12 @@ const selectedCityInfo = ref('카드를 클릭하거나 검색해 보세요.')
 const FAVORITE_STORAGE_KEY = 'skala-weather-favorites'
 const LAST_VIEWED_STORAGE_KEY = 'skala-weather-last-viewed'
 
-// AQI 숫자(1~5)를 기존 배지 체계(좋음/보통/나쁨)로 변환
 const getDustLabel = (aqi) => {
   if (aqi <= 2) return '좋음'
   if (aqi === 3) return '보통'
   return '나쁨'
 }
 
-// 도시 1곳의 날씨 + 미세먼지를 순서대로 받아오는 함수
-// (미세먼지는 좌표가 필요해서, 날씨를 먼저 받아 좌표를 얻은 뒤 요청한다)
 const fetchCityWeatherAndAir = async (city) => {
   const weatherRes = await axios.get(
     `${WEATHER_URL}?q=${city.english}&appid=${API_KEY}&units=metric&lang=kr`,
@@ -54,12 +49,11 @@ const fetchCityWeatherAndAir = async (city) => {
     ...city,
     temp: weatherRes.data.main.temp,
     status: weatherRes.data.weather[0].description,
-    condition: weatherRes.data.weather[0].main, // ★ 추가: 영문 대분류 (Clear/Clouds/Rain 등)
+    condition: weatherRes.data.weather[0].main,
     dust: getDustLabel(airRes.data.list[0].main.aqi),
   }
 }
 
-// 4개 도시를 동시에(병렬로) 처리하는 함수
 const fetchRealTimeWeather = async () => {
   isLoading.value = true
   try {
@@ -75,6 +69,101 @@ const fetchRealTimeWeather = async () => {
     console.error('🔴 날씨/미세먼지 API 연동 실패:', error)
   } finally {
     isLoading.value = false
+  }
+}
+
+const searchCityQuery = ref('')
+const searchCityError = ref('')
+const isSearchingCity = ref(false)
+
+// 한글로 입력해도 검색되도록 자주 쓰는 도시 이름을 영문으로 미리 매핑해둔다.
+// 여기 없는 한글 이름은 매핑 없이 그대로 검색을 시도한다 (실패하면 에러 안내가 뜬다).
+const cityNameMap = {
+  서울: 'Seoul',
+  부산: 'Busan',
+  인천: 'Incheon',
+  대구: 'Daegu',
+  대전: 'Daejeon',
+  광주: 'Gwangju',
+  울산: 'Ulsan',
+  수원: 'Suwon',
+  성남: 'Seongnam',
+  용인: 'Yongin',
+  고양: 'Goyang',
+  창원: 'Changwon',
+  청주: 'Cheongju',
+  전주: 'Jeonju',
+  천안: 'Cheonan',
+  강릉: 'Gangneung',
+  춘천: 'Chuncheon',
+  원주: 'Wonju',
+  속초: 'Sokcho',
+  제주: 'Jeju',
+  서귀포: 'Seogwipo',
+  포항: 'Pohang',
+  경주: 'Gyeongju',
+  구미: 'Gumi',
+  안동: 'Andong',
+  진주: 'Jinju',
+  통영: 'Tongyeong',
+  거제: 'Geoje',
+  여수: 'Yeosu',
+  순천: 'Suncheon',
+  목포: 'Mokpo',
+  군산: 'Gunsan',
+  도쿄: 'Tokyo',
+  오사카: 'Osaka',
+  후쿠오카: 'Fukuoka',
+  삿포로: 'Sapporo',
+  베이징: 'Beijing',
+  상하이: 'Shanghai',
+  홍콩: 'Hong Kong',
+  방콕: 'Bangkok',
+  뉴욕: 'New York',
+  런던: 'London',
+  파리: 'Paris',
+}
+
+const handleSearchCity = async () => {
+  const query = searchCityQuery.value.trim()
+  if (!query) return
+
+  // 매핑표에 있으면 영문으로 바꿔서 검색, 없으면 입력한 그대로 검색 시도
+  const searchTarget = cityNameMap[query] || query
+  // 매핑표에 있던 한글 이름이면 그 한글을 그대로 화면 표시용으로 쓰고,
+  // 없으면(영문으로 직접 입력한 경우) API가 돌려주는 이름을 그대로 쓴다.
+  const isKoreanMapped = Boolean(cityNameMap[query])
+
+  isSearchingCity.value = true
+  searchCityError.value = ''
+  try {
+    const weatherRes = await axios.get(
+      `${WEATHER_URL}?q=${searchTarget}&appid=${API_KEY}&units=metric&lang=kr`,
+    )
+    const { lat, lon } = weatherRes.data.coord
+    const airRes = await axios.get(`${AIR_POLLUTION_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`)
+
+    const newCity = {
+      id: `search_${Date.now()}`,
+      name: isKoreanMapped ? query : weatherRes.data.name,
+      english: searchTarget,
+      temp: weatherRes.data.main.temp,
+      yesterdayTemp: weatherRes.data.main.temp,
+      status: weatherRes.data.weather[0].description,
+      condition: weatherRes.data.weather[0].main,
+      dust: getDustLabel(airRes.data.list[0].main.aqi),
+      favorite: false,
+      searched: true,
+    }
+
+    weatherList.value = weatherList.value.filter((item) => item.name !== newCity.name)
+    weatherList.value.unshift(newCity)
+    searchCityQuery.value = ''
+  } catch {
+    searchCityError.value =
+      '해당 이름의 도시를 찾지 못했어요. 영문으로 다시 시도해보세요. (예: Incheon, Daegu)'
+  } finally {
+    isSearchingCity.value = false
   }
 }
 
@@ -147,6 +236,22 @@ watchEffect(() => {
     </BaseDashboardCard>
 
     <BaseDashboardCard>
+      <h3>🌍 다른 지역 검색</h3>
+      <div class="city-search-row">
+        <input
+          v-model="searchCityQuery"
+          @keyup.enter="handleSearchCity"
+          placeholder="도시 이름 입력 (예: 인천, 대구, 도쿄)"
+          class="city-search-input"
+        />
+        <button @click="handleSearchCity" :disabled="isSearchingCity" class="city-search-btn">
+          {{ isSearchingCity ? '검색 중...' : '검색' }}
+        </button>
+      </div>
+      <p v-if="searchCityError" class="city-search-error">{{ searchCityError }}</p>
+    </BaseDashboardCard>
+
+    <BaseDashboardCard>
       <h3>🏙️ 지역별 날씨 현황</h3>
 
       <p
@@ -157,15 +262,17 @@ watchEffect(() => {
       </p>
 
       <template v-else>
-        <WeatherCard
-          v-for="item in filteredWeatherList"
-          :key="item.id"
-          :city-item="item"
-          :is-selected="selectedCityId === item.id"
-          @select-card="selectCity"
-          @toggle-favorite="toggleFavorite"
-          @click-detail="handleDetailJump(item.id)"
-        />
+        <div class="weather-grid">
+          <WeatherCard
+            v-for="item in filteredWeatherList"
+            :key="item.id"
+            :city-item="item"
+            :is-selected="selectedCityId === item.id"
+            @select-card="selectCity"
+            @toggle-favorite="toggleFavorite"
+            @click-detail="handleDetailJump(item.id)"
+          />
+        </div>
         <p
           v-if="filteredWeatherList.length === 0"
           style="text-align: center; color: #e74c3c; padding: 10px 0"
@@ -180,3 +287,53 @@ watchEffect(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.status-bar {
+  background: #e8f5e9;
+  padding: 14px;
+  text-align: center;
+  color: #2e7d32;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.city-search-row {
+  display: flex;
+  gap: 10px;
+}
+.city-search-input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.city-search-btn {
+  padding: 10px 18px;
+  font-size: 16px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.city-search-btn:disabled {
+  background: #a9c9e0;
+  cursor: not-allowed;
+}
+.city-search-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin: 8px 0 0;
+}
+</style>

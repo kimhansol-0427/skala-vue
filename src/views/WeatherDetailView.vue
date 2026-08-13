@@ -146,19 +146,22 @@ const shareSnapshot = async () => {
 .info-card {
   background: #f4f4f4;
   border-radius: 8px;
-  padding: 14px 16px;
-  margin: 12px 0;
+  padding: 20px 24px;
+  margin: 16px 0;
 }
 .info-card h4 {
   margin-top: 0;
+  font-size: 22px;
+  color: #303133;
 }
 .info-card p {
-  margin: 6px 0;
-  font-size: 14px;
+  margin: 10px 0;
+  font-size: 18px;
   color: #444;
 }
 .diff-text {
   font-weight: bold;
+  font-size: 17px;
 }
 .diff-up {
   color: #c0392b;
@@ -173,32 +176,32 @@ const shareSnapshot = async () => {
 .share-btn {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 14px;
   border: none;
   border-radius: 6px;
   background: #9b59b6;
   color: white;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 .share-message {
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   color: #2e7d32;
-  margin: 8px 0 0;
+  margin: 10px 0 0;
 }
 
 .back-btn {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 14px;
   border: none;
   border-radius: 6px;
   background: #3498db;
   color: white;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 </style>
