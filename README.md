@@ -10,11 +10,23 @@
 - 커스터마이징: 도시 4곳(서울/울산/강릉/제주)으로 변경, 즐겨찾기 별표 기능 추가,
   미세먼지 배지(v-else-if 체인) 추가, 날씨 상태별 여행 추천 문구(getActivity 함수) 추가
 
+### Day 2-1 - Composition API (computed·watch·watchEffect)
+
+**과제 2: 날씨 컴포지션** (`src/components/exercise/WeatherComposition.vue`)
+
+**과제 2: 날씨 컴포지션** (`src/components/exercise/WeatherComposition.vue`)
+
+- computed(filteredWeatherList)로 실시간 검색 필터링 구현
+- watch(selectedCityInfo)로 카드 선택 시 콘솔 로그, watchEffect로 검색어 변화 자동 추적
+- 커스터마이징: 어제 만든 도시 4곳·즐겨찾기·미세먼지·여행 추천 문구 그대로 유지,
+  검색 결과 개수를 보여주는 resultCountLabel computed 추가로 신설
+
 ---
 
 이 아래는 Vue 기본 템플릿 안내입니다.
+...
 
-# skala-vue
+## skala-vue
 
 This template should help get you started developing with Vue 3 in Vite.
 

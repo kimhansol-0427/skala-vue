@@ -30,6 +30,18 @@ import MultiSourceWatchExample from './components/practices/composition/MultiSou
 import DeepWatchExample from './components/practices/composition/DeepWatchExample.vue'
 import ReactiveDataExample from './components/practices/composition/ReactiveDataExample.vue'
 import WatchEffectExample from './components/practices/composition/WatchEffectExample.vue'
+import LifecycleParent from './components/practices/component/LifecycleParent.vue'
+import PropsEmitsParent from './components/practices/component/PropsEmitsParent.vue'
+import SlotDefaultParent from './components/practices/component/SlotDefaultParent.vue'
+import SlotNamedParent from './components/practices/component/SlotNamedParent.vue'
+import SlotScopedParent from './components/practices/component/SlotScopedParent.vue'
+import CounterStoreExample from './components/practices/pinia/CounterStoreExample.vue'
+import AxiosWeatherExample from './components/practices/library/AxiosWeatherExample.vue'
+import StoreCounter from './components/practices/library/StoreCounter.vue'
+import AxiosJson from './components/practices/library/AxiosJson.vue'
+import RegisterFormExample from './components/practices/library/RegisterFormExample.vue'
+import ProductQuantityExample from './components/practices/library/ProductQuantityExample.vue'
+import ProgressExample from './components/practices/library/ProgressExample.vue'
 import './components/practice.css'
 </script>
 
@@ -66,5 +78,17 @@ import './components/practice.css'
     <DeepWatchExample />
     <ReactiveDataExample />
     <WatchEffectExample />
+    <LifecycleParent />
+    <PropsEmitsParent />
+    <SlotDefaultParent />
+    <SlotNamedParent />
+    <SlotScopedParent />
+    <CounterStoreExample />
+    <AxiosWeatherExample />
+    <StoreCounter />
+    <AxiosJson />
+    <RegisterFormExample />
+    <ProductQuantityExample />
+    <ProgressExample />
   </div>
 </template>
