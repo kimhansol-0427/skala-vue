@@ -1,4 +1,4 @@
-# skala-vue — Vue.js 실습
+# skala-vue - Vue.js 실습
 
 **배포 주소: <https://kimhansol-0427.github.io/skala-vue/>**
 
@@ -70,7 +70,7 @@
 
 ### Composition API 실습 (`components/practices/composition/`)
 
-- ref, reactive, computed, watch(다중 소스·깊은 감시 포함), watchEffect
+- ref, reactive, computed, watch, watchEffect
 
 ### 컴포넌트 통신 실습 (`components/practices/component/`)
 
