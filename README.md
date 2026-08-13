@@ -1,10 +1,6 @@
-# skala-vue — SKALA 4기 Vue.js 실습
-
-Vue 3 + Vite 기반으로 4일간 진행한 SKALA 4기(SK AX) Vue.js 실습 프로젝트입니다.
+# skala-vue — Vue.js 실습
 
 **배포 주소: <https://kimhansol-0427.github.io/skala-vue/>**
-
-`App.vue`의 `MODE = 'exercise'`일 때 렌더링되는 `ExerciseApp.vue`가 제출 대상 화면입니다.
 
 ---
 
@@ -66,7 +62,7 @@ Vue 3 + Vite 기반으로 4일간 진행한 SKALA 4기(SK AX) Vue.js 실습 프�
 
 ## Code Challenge 실습 (PracticeApp.vue)
 
-`App.vue`의 `MODE = 'practice'`일 때 렌더링되는 `PracticeApp.vue`에 정리된 수업 중 확인용 실습들입니다. (제출 채점 대상은 아니며, 학습 과정 기록용입니다.)
+`App.vue`의 `MODE = 'practice'`일 때 렌더링되는 `PracticeApp.vue`에 정리된 수업 중 확인용 실습들입니다.
 
 ### 기초 문법 실습 (`components/practices/basic/`)
 
@@ -104,7 +100,7 @@ npm install
 npm run dev
 ```
 
-`.env.local` 파일에 아래 형식으로 본인의 API 키를 추가해야 날씨 데이터가 정상적으로 표시됩니다.
+`.env.local`
 
 VITE_WEATHER_API_KEY=887e88f7fd26b5ac945709a48503c9bd
 
