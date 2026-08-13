@@ -62,8 +62,6 @@
 
 ## Code Challenge 실습 (PracticeApp.vue)
 
-`App.vue`의 `MODE = 'practice'`일 때 렌더링되는 `PracticeApp.vue`에 정리된 수업 중 확인용 실습들입니다.
-
 ### 기초 문법 실습 (`components/practices/basic/`)
 
 - v-html, v-text, v-bind, class/style 바인딩, v-if/v-show, v-for, v-pre/v-cloak/v-once/v-memo
