@@ -110,18 +110,3 @@ VITE_WEATHER_API_KEY=887e88f7fd26b5ac945709a48503c9bd
 npm run build     # dist/ 생성
 npm run deploy    # 빌드 + GitHub Pages(gh-pages 브랜치) 배포
 ```
-
----
-
-## 다음은 Vue 기본 템플릿 안내입니다
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
